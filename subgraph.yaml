@@ -1,0 +1,35 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Reward
+    network: chapel
+    source:
+      address: "0xD32AeaD07Ea50016b8777c78C0E19C0bb6C389bf"
+      abi: Reward
+      startBlock: 47552201
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - BalanceChecked
+        - OwnershipTransferred
+        - Redeemed
+        - Rewarded
+      abis:
+        - name: Reward
+          file: ./abis/Reward.json
+      eventHandlers:
+        - event: BalanceChecked(indexed address,uint256)
+          handler: handleBalanceChecked
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Redeemed(indexed address,uint256,uint256)
+          handler: handleRedeemed
+        - event: Rewarded(indexed address,uint256)
+          handler: handleRewarded
+      file: ./src/reward.ts
