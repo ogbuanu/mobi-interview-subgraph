@@ -1,36 +1,15 @@
-type BalanceChecked @entity(immutable: true) {
+type UserTransaction @entity {
   id: Bytes!
-  user: Bytes! # address
-  balance: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+  user: Bytes # address
+  eventType: String!
+  previousOwner: Bytes # Previous owner address (optional for OwnershipTransferred)
+  newOwner: Bytes # New owner address (optional for OwnershipTransferred)
+  points: BigInt
+  tokens: BigInt
+  timestamp: BigInt!
 }
 
-type OwnershipTransferred @entity(immutable: true) {
-  id: Bytes!
-  previousOwner: Bytes! # address
-  newOwner: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type Redeemed @entity(immutable: true) {
-  id: Bytes!
-  user: Bytes! # address
-  points: BigInt! # uint256
-  tokens: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type Rewarded @entity(immutable: true) {
-  id: Bytes!
-  user: Bytes! # address
-  points: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type RewardStats @entity {
+  id: ID!
+  totalRewards: BigInt!
 }
