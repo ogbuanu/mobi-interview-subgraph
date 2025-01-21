@@ -85,7 +85,7 @@ dataSources:
     name: Reward
     network: mainnet
     source:
-      address: "0xYourContractAddressHere"
+      address: "0xD32AeaD07Ea50016b8777c78C0E19C0bb6C389bf"
       abi: Reward
       startBlock: 12345678
     mapping:
